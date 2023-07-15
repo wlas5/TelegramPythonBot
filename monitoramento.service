@@ -1,0 +1,18 @@
+[Unit]
+Description=monitoramento_bot Service
+After=multi-user.target
+
+[Service]
+Type=simple
+Restart=on-failure
+StartLimitBurst=2
+# Restart, but not more than once every 10 minutes
+StartLimitInterval=600
+# Restart, but not more than once every 30s (for testing purposes)
+#StartLimitInterval=30
+#Restart=always
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 /monitoramento.py
+
+[Install]
+WantedBy=multi-user.target
